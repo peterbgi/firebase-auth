@@ -1,15 +1,31 @@
 <template>
-  <nav>
-    <router-link to="/">Első</router-link> |
-    <router-link to="/about">Vajon mi</router-link>
-  </nav>
+  <div id="nav" v-if="$store.state.user">
+    <router-link to="/">Sziasztok</router-link> |
+    <router-link to="/about">Ez valami</router-link>
+    <button @click="$store.dispatch('logout')">Kilépés</button>
+  </div>
   <router-view/>
 </template>
 
+<script>
+import { onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
+
+export default {
+  setup() {
+    const store = useStore()
+
+    onBeforeMount(() => {
+      store.dispatch('fetchUser')
+    })
+  }
+}
+</script>
+
 <style>
-*{
-  padding: 0;
+* {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 #app {
@@ -20,16 +36,16 @@
   color: #2c3e50;
 }
 
-nav {
+#nav {
   padding: 30px;
 }
 
-nav a {
+#nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-nav a.router-link-exact-active {
+#nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>

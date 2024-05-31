@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Login from '../views/Login-View.vue'
 import { auth } from '@/firebase'
 
 const routes = [
@@ -21,9 +22,10 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
-    component: () => import('../views/Login-View.vue')
+    name: 'Login',
+    component: Login
   }
+
 ]
 
 const router = createRouter({
