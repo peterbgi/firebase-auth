@@ -1,12 +1,3 @@
-<template>
-  <div id="nav" v-if="$store.state.user">
-    <router-link to="/">Sziasztok</router-link> |
-    <router-link to="/about">Ez valami</router-link>
-    <button @click="$store.dispatch('logout')">Kilépés</button>
-  </div>
-  <router-view/>
-</template>
-
 <script>
 import { onBeforeMount } from 'vue'
 import { useStore } from 'vuex'
@@ -21,6 +12,17 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div id="nav" v-if="$store.state.user">
+    <router-link to="/">Sziasztok</router-link> |
+    <router-link to="/about">Ez valami</router-link>
+    <button id="logout" @click="$store.dispatch('logout')">Kilépés</button>
+  </div>
+  <router-view/>
+</template>
+
+
 
 <style>
 * {
@@ -48,4 +50,5 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
